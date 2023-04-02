@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+
+
+	<h:form name="formNuevo">
+		<p:panel header="Empleados" style="width: 70%;margin:auto">
+
+			<p:panelGrid id="idGridEgresado" columns="4" layout="grid">
+
+				<h:outputLabel for="ci" value="Identificacion" />
+				<h:inputText id="ci" required="true" maxlength="10"
+					value="#{empleadosController.empleadoActual.numeroIdentificacion}" />
+
+				<h:outputLabel for="nombreUno" value="Primer Nombre:" />
+				<h:inputText id="nombreUno" required="true"
+					value="#{empleadosController.empleadoActual.nombreUno}"
+					onkeyup="value=value.toUpperCase()"
+					onblur="value=value.toUpperCase()" />
+
+				<h:outputLabel for="apellidoUno" value="Primer Apellido:" />
+				<h:inputText id="apellidoUno" required="true"
+					value="#{empleadosController.empleadoActual.apellidoUno}"
+					onkeyup="value=value.toUpperCase()"
+					onblur="value=value.toUpperCase()" />
+			</p:panelGrid>
+
+
+			<div align="center">
+				<br />
+				<h:commandButton value="Enviar" action="#{empleadosController.guardar()}" />
+				
+			</div>
+
+		</p:panel>
+	</h:form>
+
+
+
+
+</h:body>
+</html>

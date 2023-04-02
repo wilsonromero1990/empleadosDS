@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>sistema</display-name>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/login.jsf</location>
+	</error-page>
+	<!-- <error-page> -->
+	<!-- <error-code>404</error-code> -->
+	<!-- <location>/error.xhtml</location> -->
+	<!-- </error-page> -->
+	<!-- <error-page> -->
+	<!-- <error-code>500</error-code> -->
+	<!-- <location>/error.xhtml</location> -->
+	<!-- </error-page> -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	<context-param>
+		<description>
+		Comma-delimited list of context-relative resource paths under which the JSF implementation
+		will look for application configuration resources, before loading a configuration resource
+		named /WEB-INF/faces-config.xml (if such a resource exists).
+		</description>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>nova-colored</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Prime -->
+
+	<context-param>
+		<param-name>primefaces.FONT_AWESOME</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+		<!-- It is commented for that it can be unlimited size -->
+		<!--init-param> <param-name>thresholdSize</param-name> <param-value>51200</param-value> 
+			</init-param -->
+		<init-param>
+			<param-name>uploadDirectory</param-name>
+			<param-value>/tmp</param-value>
+		</init-param>
+		<!-- It is commented for that it can be unlimited size -->
+		<init-param>
+			<param-name>thresholdSize</param-name>
+			<param-value>204800</param-value>
+		</init-param>
+		<init-param>
+			<param-name>minSize</param-name>
+			<param-value>1</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+
+	<!-- <welcome-file-list> -->
+	<!-- <welcome-file>login.jsf</welcome-file> -->
+	<!-- </welcome-file-list> -->
+	<welcome-file-list>
+		<welcome-file>faces/login.xhtml</welcome-file>
+	</welcome-file-list>
+	<filter>
+		<filter-name>facesExceptionFilter</filter-name>
+		<filter-class>org.omnifaces.filter.FacesExceptionFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.omnifaces.filter.CharacterEncodingFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>gzipResponseFilter</filter-name>
+		<filter-class>org.omnifaces.filter.GzipResponseFilter</filter-class>
+		<init-param>
+			<description>The threshold size in bytes. Must be a number between 0 and 9999. Defaults to 150.</description>
+			<param-name>threshold</param-name>
+			<param-value>150</param-value>
+		</init-param>
+		<init-param>
+			<description>The mimetypes which needs to be compressed. Must be a commaseparated string. Defaults to the below values.</description>
+			<param-name>mimetypes</param-name>
+			<param-value>
+       			 text/plain, text/html, text/xml, text/css, text/javascript, text/csv,
+       			 application/xml,application/xhtml, application/xhtml+xml, application/javascript, application/json,
+       			 image/svg+xml, text/jsf, image/png, text/js
+    		</param-value>
+		</init-param>
+	</filter>
+
+	<context-param>
+		<param-name>org.omnifaces.EXCEPTION_TYPES_TO_UNWRAP</param-name>
+		<param-value>javax.ejb.EJBException,javax.persistence.RollbackException</param-value>
+	</context-param>
+	<mime-mapping>
+		<extension>eot</extension>
+		<mime-type>application/vnd.ms-fontobject</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>otf</extension>
+		<mime-type>font/opentype</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>ttf</extension>
+		<mime-type>application/x-font-ttf</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>woff</extension>
+		<mime-type>application/x-font-woff</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>svg</extension>
+		<mime-type>image/svg+xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>woff2</extension>
+		<mime-type>application/x-font-woff2</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>eot</extension>
+		<mime-type>application/x-font-eot</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xhtml</extension>
+		<mime-type>text/html</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+		<extension>xhtml</extension>
+		<mime-type>application/xml</mime-type>
+	</mime-mapping>
+</web-app>
